@@ -20,17 +20,18 @@ def is_safe(grid, r, c, v):
 def is_valid(grid):
     for i in range(9):
         for j in range(9):
-            if grid[i][j] in range(1, 10):
+            if grid[i][j] in range(1,10):
                 v = grid[i][j]
-                grid[i][j] = 0
-                if is_safe(grid, i, j, v):
-                    grid[i][j] = v
+                grid[i][j]=0
+                if is_safe(grid,i,j,v):
+                    grid[i][j]=v
                 else:
                     return False
+            elif grid[i][j]==0:
+                continue
             else:
                 return False
     return True
-
 
 # function to check if board is full
 def is_complete(grid):
@@ -96,10 +97,10 @@ board = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 1, 2, 3, 4, 5, 0, 0],
          [0, 0, 7, 0, 0, 0, 6, 0, 0],
-         [1, 0, 6, 0, 0, 0, 7, 0, 0],
+         [0, 0, 6, 0, 0, 0, 7, 0, 0],
          [0, 0, 5, 0, 0, 0, 8, 0, 0],
          [0, 0, 4, 3, 2, 1, 9, 0, 0],
-         [0, 0, 0, 0, 0, 0, 0, 0, 8],
+         [0, 0, 0, 0, 0, 0, 0, 0, 0],
          [0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 try:
