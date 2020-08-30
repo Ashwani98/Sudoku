@@ -1,11 +1,14 @@
 import numpy as np
 
 
+# function to check if value can be added at empty location
 def is_safe(grid, r, c, v):
+    # checking if value exist in row or column
     for i in range(9):
         if grid[r][i] == v or grid[i][c] == v:
             return False
 
+    # checking if value exist in respective 3x3 grid
     for i in range(3):
         for j in range(3):
             if grid[r // 3 * 3 + i][c // 3 * 3 + j] == v:
@@ -13,23 +16,28 @@ def is_safe(grid, r, c, v):
     return True
 
 
+# checking if given board is having valid entries
 def is_valid(grid):
     for i in range(9):
         for j in range(9):
-            if grid[i][j] != 0:
+            if grid[i][j] in range(1, 10):
                 v = grid[i][j]
                 grid[i][j] = 0
                 if is_safe(grid, i, j, v):
                     grid[i][j] = v
                 else:
                     return False
+            else:
+                return False
     return True
 
 
+# function to check if board is full
 def is_complete(grid):
     return np.product(np.array(grid))
 
 
+# function to get empty cell in grid
 def empty_cell(grid):
     for i in range(9):
         for j in range(9):
@@ -37,6 +45,7 @@ def empty_cell(grid):
                 return i, j
 
 
+# recursive function to solve sudoku
 def solve(grid):
     if is_complete(grid):
         return grid
@@ -55,6 +64,7 @@ def solve(grid):
     return False
 
 
+# function to print board
 def print_board(grid):
     for i in range(9):
         for j in range(9):
